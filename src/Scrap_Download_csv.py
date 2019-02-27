@@ -4,7 +4,7 @@ from time import sleep
 import requests
 from bs4 import BeautifulSoup as bs
 
-from src.Py_mongo import import_content as json_mongo
+from Py_mongo import import_content as json_mongo
 
 
 def remove_repetidos(lista):

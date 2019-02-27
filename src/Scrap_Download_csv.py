@@ -4,6 +4,8 @@ from time import sleep
 import requests
 from bs4 import BeautifulSoup as bs
 
+from src.Py_mongo import import_content as json_mongo
+
 
 def remove_repetidos(lista):
     lista_sem_repetidos = []
@@ -15,7 +17,9 @@ def remove_repetidos(lista):
 
 
 def find_datasets(url_site):
-    """Funcao que procura links de possiveis locais para futuro scraping"""
+    """
+    Funcao que procura links de possiveis locais para futuro scraping
+    """
 
     try:
         res = requests.get(url_site)
@@ -36,7 +40,9 @@ def find_datasets(url_site):
 
 
 def check_and_downloadind_csv(datasets_links, base_url):
-    """Funcao que procura links contendo .csv no final e faz o download para a pasta dataset"""
+    """
+    Funcao que procura links contendo .csv no final e faz o download para a pasta dataset
+    """
     try:
         for c in datasets_links:
             url_site = f'{base_url + c}'
@@ -61,16 +67,21 @@ def check_and_downloadind_csv(datasets_links, base_url):
 
                     os.makedirs(str(c[1:] + '/'), exist_ok=True)
 
-                    csvFile = open(os.path.join(str(c[1:] + '/'), os.path.basename(filename)), 'wb')
-                    # TODO: Colocar datas no arquivo MM DD YYYY
+                    name_path = str(c[1:]) + '/' + os.path.basename(filename)
 
+                    csvFile = open(os.path.join(str(name_path)), 'wb')
+                    # TODO: Colocar datas no arquivo MM DD YYYY
                     for data in response.iter_content():
                         csvFile.write(data)
                     csvFile.close()
+                    # utiliza a funcao json_mongo
+                    json_mongo(name_path)
+                    # TODO: diferenciar arquivos HTML csv
+                    # TODO: deletar arquivos csv
             sleep(1)
 
     except Exception as e:
-        print("Failed2!\n{}".format(e))
+        print("Failed check_and_downloadind_csv!\n{}".format(e))
 
 
 def main():
@@ -83,8 +94,9 @@ def main():
     datasets_found = find_datasets(url_site)
     check_and_downloadind_csv(datasets_found, base_url)
 
-    print("Done")
+    print("EOF")
 
 
 if __name__ == "__main__":
     main()
+

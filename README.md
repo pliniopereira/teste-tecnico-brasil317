@@ -18,7 +18,8 @@ Agora localize o arquivo requirements.txt instale as bibliotecas:
 Agora  rode o Scrap_Download_csv.py
 > & python /path/to/brasil317/src/Scrap_Download_csv.py
 
-Bibliotecas utilizadas:
+---
+### Bibliotecas utilizadas:
 
 beautifulsoup4==4.7.1
 
@@ -47,10 +48,16 @@ soupsieve==1.8
 urllib3==1.24.1
 
 
+___
+
 Caderno de clipping com tutoriais, fontes utilizadas na construção:
 https://www.evernote.com/shard/s235/sh/87510007-1713-4ca5-8dd9-024f2c7fa7cd/3127a59c2be285097f9ec2ef9730c88b
 
+___
+
 Agradecimentos aos [Eduardo Mendes](https://github.com/dunossauro) e [Jessica Temporal](https://github.com/jtemporal) cujo o material produzido foi de muita ajuda.
+
+___
 
 
 ## License
